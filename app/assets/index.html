@@ -1,16 +1,232 @@
 <!doctype html>
 <html amp lang="en">
   <head>
-    <meta charset="utf-8">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <title>Maliek Galant</title>
-    <link rel="canonical" href="index.html">
-    <meta name="viewport" content="width=device-width">
-    
-</head>
-<body>
-<h1 id="hello">Hello World!</h1>
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Maliek News App</title>
+  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+  <script async src="https://cdn.ampproject.org/amp4ads-v0.js"></script>
+  <style amp4ads-boilerplate>body{visibility:hidden}</style>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <!-- ## Setup -->
+  <!-- Import the `amp-ad` component in the header. -->
+  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  <link rel="canonical" href="index.html">
+  <style amp-custom>
+      .root-container {
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        line-height: 18px;
+        overflow: hidden;
+        background: #6a594b;
+        color: #ffffff;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .main-container {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+      }
+      .footer {
+        background: #000000;
+        color: #ffffff;
+        padding: 8px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+      }
+      .footer-logo {
+        border-right: 1px solid #ffffff;
+        padding: 0 8px 0 0;
+        margin: 0 8px 0 0;
+      }
+      .bg-img {style amp-custom>
+      .root-container {
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        line-height: 18px;
+        overflow: hidden;
+        background: #6a594b;
+        color: #ffffff;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .main-container {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+      }
+      .footer {
+        background: #000000;
+        color: #ffffff;
+        padding: 8px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+      }
+      .footer-logo {
+        border-right: 1px solid #ffffff;
+        padding: 0 8px 0 0;
+        margin: 0 8px 0 0;
+      }
+      .bg-img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+      }
+      .logo-img {
+        display: block;
+      }
+      .stretch {
+        flex: 1;
+      }
+      .button {
+        cursor: pointer;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 6px 10px;
+        color: #ffffff;
+        display: inline-block;
+        background-color: #2979ff;
+      }
+      .carousel-item {
+        width: 184px;
+        height: 105px;
+        padding: 12px 2px;
+        color: #000000;
+        position: relative;
+      }
+      .carousel-item:first-child {
+        padding-left: 12px;
+      }
+      .carousel-item:last-child {
+        padding-right: 12px;
+      }
+      .carousel {
+        width: 100%;
+        position: absolute;
+      }
+      .carousel-item-inner {
+        width: 180px;
+        height: 105px;
+        padding: 2px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        position: relative;
+      }
+      .carousel-img {
+        display: block;
+        border: 2px solid #ffffff;
+        border-radius: 2px;
+      }
+      .carousel-button-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px;
+        text-align: center;
+      }
+      .learn-more a {
+        padding: 8px 0;
+        text-transform: uppercase;
+        display: inline-block;
+        color: #2979ff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
 
+<body>
+
+<h1 id="hello">Maliek News World!</h1>
+<!-- ## Basic usage -->
+  <!--
+    `amp-ad` requires `width` and `height` values. Select an ad network via the type argument.
+  -->
+  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+  </amp-ad>
+
+  <!-- ## Placeholder -->
+  <!--
+    Optionally `amp-ad` supports a child element with the `placeholder` attribute. If supported by the ad network, this element is shown until the ad is available for viewing.
+  -->
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
+    <div placeholder>
+      <b>Placeholder here!!!</b>
+    </div>
+  </amp-ad>
+
+  <!-- ## Fallback -->
+  <!--
+    `amp-ad` supports a child element with the `fallback` attribute. If supported by the ad network, this element is shown if no ad is available for this slot.
+  -->
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
+    <div fallback>
+      <p>Thank you for trying AMP!</p>
+      <p>You got lucky! We have no ad to show to you!</p>
+    </div>
+  </amp-ad>
+  <amp-carousel
+            height="132"
+            layout="fixed-height"
+            type="carousel"
+            class="carousel">
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <amp-img src="https://preview.amp.dev/static/samples/img/car-engine.jpg"
+                  width="177"
+                  height="100"
+                  layout="fixed"
+                  class="carousel-img"></amp-img>
+              <div class="carousel-button-container">
+                <a href="https://amp.dev/documentation/examples/" target="_blank" class="button carousel-button">
+                  6C Tuned Engine
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <amp-img src="https://preview.amp.dev/static/samples/img/car-gauges.jpg"
+                  width="177"
+                  height="100"
+                  layout="fixed"
+                  class="carousel-img"></amp-img>
+              <div class="carousel-button-container">
+                <a href="https://amp.dev/documentation/examples/" target="_blank" class="button carousel-button">
+                  Sport Gauge Cluster
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <amp-img src="https://preview.amp.dev/static/samples/img/car-seats.jpg"
+                  width="177"
+                  height="100"
+                  layout="fixed"
+                  class="carousel-img"></amp-img>
+              <div class="carousel-button-container">
+                <a href="https://amp.dev/documentation/examples/" target="_blank" class="button carousel-button">
+                  Luxury Seats
+                </a>
+              </div>
+            </div>
+          </div>
+        </amp-carousel>
+      </div>
 </body>
 </html>
