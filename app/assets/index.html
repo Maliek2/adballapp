@@ -1,178 +1,125 @@
 <!doctype html>
-<html amp lang="en">
+<html>
   <head>
-  <meta charset="utf-8">
-  <link rel="canonical" href="https://amp.dev/documentation/examples/user-consent/user_consent_modal_ui/index.html">
-  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <title>Maliek News App</title>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
-  
-  <script async src="https://cdn.ampproject.org/amp4ads-v0.js"></script>
-  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-  <script async custom-element="amp-facebook-page" src="https://cdn.ampproject.org/v0/amp-facebook-page-0.1.js"></script>
-  <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
-  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
- 
- <!--
-    CSS must be embedded inline.
-  -->
+    <script src="/third_party/linkify.min.js"></script>
+    <script src="/third_party/linkify-element.min.js"></script>
 
-  <style amp-custom>
-  :root {
-      --space-3: 1.5rem; /* 24px */
-    }
-    #post-consent-ui {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: var(--space-3);
-    }
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://ampbyexample.com/css/ampstart.css">
+    <meta name="viewport" content="width=device-width">
+    <style>
+      body {
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+      }
+      pre, textarea, code {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      pre, textarea {
+        overflow: auto;
+        margin: 0;
+        padding: 8px;
+        background-color: #f5f5f5;
+      }
+      pre {
+        height: 420px;
+      }
+      textarea {
+        height: 140px;
+        border-style: none;
+        resize: none;
+        display: block;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      #loader {
+        display: none;
+        position: relative;
+        top: 124px;
+        width: 24px;
+        height: 24px;
+        margin: auto;
+      }
+      /* make space for active outline */
+      #run {
+        margin: 4px;
+      }
+    </style>
+    <script type="text/javascript">
+/**
+ * Execute the URL request and update the result field.
+ */
+function sendAmpUrlRequest() {
+  const resultView = document.getElementById('result');
+  resultView.innerHTML = '';
+  const loader = document.getElementById('loader');
+  loader.style.display = 'inline';
+  const urls = document.getElementById('input').value;
+  sendApiRequest(urls, function(result) {
+    loader.style.display = 'none';
+    resultView.innerHTML = result;
+    linkifyElement(resultView);
+  });
+}
 
-    h1 {
-      color: red;
-    }
-  </style>
+/**
+ * Call the AMP URL API.
+ */
+function sendApiRequest(urls, callback) {
+  try {
+    var url = 'https://content-acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet?key=AIzaSyC1Bh5HwhrB6Ai2U4aXfsmhgy2zWOHS0Xk';
+    var xhr = createRequest('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.onload = function () {
+      callback(this.responseText);
+    };
+    xhr.onerror = function () {
+      callback('API not available');
+    };
+    xhr.send(urls);
+  }catch(error) {
+    callback(error.message);
+  }
+}
 
-  <!--
-    The AMP boilerplate.
-  -->
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-
-  
-  
-  </head>
-
-<body>
-
-<h1 id="hello">Maliek News!</h1>
-  <!-- ## Consent Dialog Iframe -->
-  
-    <!--
-    Use `data-block-on-consent` attribute to block AMP components until consent is given.
-    Individual AMP components can override  blocking behavior and implement blocking logic themselves.
-
-    Here is an image which is blocked until consent is given:
-  -->
-   <amp-consent id="myUserConsent" layout="nodisplay">
-    <script type="application/json">{
-      "consentInstanceId": "myConsent",
-      "consentRequired": true,
-      "promptUISrc": "/app/diy-consent.html",
-      "postPromptUI": "post-consent-ui"
-    }
+/**
+ * Create the XHR object.
+ */
+function createRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
     </script>
-    <div id="post-consent-ui">
-    <button on="tap:myUserConsent.prompt()">Update Consent</button>
-    </div>
-</amp-consent>
-
-<div class="root-container">
-      <div class="main-container">
-        <amp-img data-block-on-consent src="https://preview.amp.dev/static/samples/img/landscape_lake_300x201.jpg" width="300" height="201">
-        </amp-img>
-        
- 
- <amp-facebook-page width="552" height="310" layout="responsive" data-tabs="timeline, events" data-href="https://www.facebook.com/barackobama/">
- </amp-facebook-page>       
-
-  <!-- ## Basic usage -->
-  <!--
-    `amp-ad` requires `width` and `height` values. Select an ad network via the type argument.
-  -->
- 
-  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-  </amp-ad>
-  
-  <!-- ## Placeholder -->
-  <!--
-    Optionally `amp-ad` supports a child element with the `placeholder` attribute. If supported by the ad network, this element is shown until the ad is available for viewing.
-  -->
-  <amp-ad width="400" height="300" type="doubleclick" data-slot="/4119129/doesnt-exist">
-    <div placeholder>
-    <b>Placeholder here!!!</b>
-    </div>
-  </amp-ad>
-
-  <!-- ## Fallback -->
-  <!--
-    `amp-ad` supports a child element with the `fallback` attribute. If supported by the ad network, this element is shown if no ad is available for this slot.
-  -->
-
-  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
-    <div fallback>
-      <p>Thank you for trying AMP!</p>
-      <p>You got lucky! We have no ad to show to you!</p>
-    </div>
-  </amp-ad>
-
-
-  <amp-carousel
-            height="132"
-            layout="fixed-height"
-            type="carousel"
-            class="carousel">
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <amp-img src="https://preview.amp.dev/static/samples/img/car-engine.jpg"
-                  width="177"
-                  height="100"
-                  layout="fixed"
-                  class="carousel-img">
-              </amp-img>
-              <div class="carousel-button-container">
-                <a href="https://www.adball.online/" target="_blank" class="button carousel-button">
-                  Mobile App
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <amp-img src="https://preview.amp.dev/static/samples/img/car-gauges.jpg"
-                  width="177"
-                  height="100"
-                  layout="fixed"
-                  class="carousel-img">
-              </amp-img>
-              <div class="carousel-button-container">
-                <a href="https://www.adball.tech/" target="_blank" class="button carousel-button">
-                  Sports News
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <amp-img src="https://preview.amp.dev/static/samples/img/car-seats.jpg"
-                  width="177"
-                  height="100"
-                  layout="fixed"
-                  class="carousel-img">
-              </amp-img>
-              <div class="carousel-button-container">
-                <a href="https://www.adball.online" target="_blank" class="button carousel-button">
-                  Luxury Seats
-                </a>
-              </div>
-            </div>
-          </div>
-        </amp-carousel>
-      </div>
-      <div class="footer">
-      <div class="footer-logo">
-          <amp-img src="https://preview.amp.dev/static/samples/img/car-logo.png"
-              width="72"
-              height="32"
-              layout="fixed"
-              alt="Howdy"
-              class="logo-img">
-          </amp-img>
-        </div>
-        <div class="stretch">The News Tech</div>
-        <a href="/index.html" target="_blank" class="button">
-          Learn About 
-        </a>
-      </div>
-    </div>
-</body>
+  </head>
+  <body>
+   
+ <textarea type="text" id="input">{
+  "urls":[
+    "https://www.adball.tech",
+    "https://www.adball.tech/article-without-amp-version",
+    "https://www.theguardian.com/membership/2016/feb/24/todays-release-of-accelerated-mobile-pages-amp",
+    "http://bit.ly/28lya4p"
+  ]
+}</textarea>
+   
+ <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
+      Execute
+    </button>
+    <img id="loader" src="/static/samples/img/loader.gif">
+    <pre><code id="result"></code></pre>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  </body>
 </html>
