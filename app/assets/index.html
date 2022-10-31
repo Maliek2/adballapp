@@ -1,16 +1,18 @@
-P<!doctype html>
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">  
+<!doctype html>
+<html ⚡ lang="en">
 <head>
- <meta content="width=device-width,minimum-scale=1.0" name="viewport"> 
- <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> 
- 
-
-<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
-
-<link rel="stylesheet" href="https://www.adball.tech/css/ampstart.css">
-<meta name="viewport" content="width=device-width">
-<style amp-custom>
+<meta charset="utf-8">
+  <link rel="canonical" href="https://amp.dev/advanced/star_rating.html">
+  <title>Star Rating</title>
+  <meta name="viewport" content="width=device-width">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> 
+  <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+  <link rel="stylesheet" href="https://www.adball.tech/css/ampstart.css">
+  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+  <!-- We also need the `amp-mustache` component. -->
+  <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+  <style amp-custom>
     .rating {
       --star-size: 3;  /* use CSS variables to calculate dependent dimensions later */
       padding: 0;  /* to prevent flicker when mousing over padding */
@@ -64,6 +66,25 @@ P<!doctype html>
       color: red;
     }
   </style>
+  <style amp-boilerplate>
+body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
+</style><noscript>
+<style amp-boilerplate>
+
+body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
+</style></noscript>
+  <!-- ## Setup -->
+  
+  <!--
+    Import the `amp-form` component.
+  -->
+  
+  <!--
+    ## CSS for the star rating
+  -->
+  <!--
+    This star rating implementation overlays "☆" Unicode characters precisely over radio buttons. Inline comments below describe the rules in detail.
+  -->
 </head>
 
 <body>
@@ -90,7 +111,6 @@ P<!doctype html>
       </li>
     </ul>
   </div>
-
 
 <!--
   We'll use a set of radio buttons to take user input for the star ratings, because they are keyboard-accessible.
