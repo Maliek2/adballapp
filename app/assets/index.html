@@ -13,7 +13,16 @@
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
   <!-- We also need the `amp-mustache` component. -->
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-  <style amp-custom>
+  <script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
+  <script async custom-element="amp-render" src="https://cdn.ampproject.org/v0/amp-render-1.0.js"></script>
+  <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+
+
+
+
+
+
+   <style amp-custom>
     .rating {
       --star-size: 3;  /* use CSS variables to calculate dependent dimensions later */
       padding: 0;  /* to prevent flicker when mousing over padding */
@@ -91,6 +100,29 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
 <body>
 <main>
   <h1 align="center">Maliek News</h1>
+  <div>
+    <p>Things to try on a computer with a keyboard and/or pointing device:</p>
+    
+  </div>
+  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+  </amp-ad>
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
+    <div placeholder>
+      <b>Placeholder here!!!</b>
+    </div>
+  </amp-ad>
+
+  <!-- ## Fallback -->
+  <!--
+    `amp-ad` supports a child element with the `fallback` attribute. If supported by the ad network, this element is shown if no ad is available for this slot.
+  -->
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
+    <div fallback>
+      <p>Thank you for trying AMP!</p>
+      <p>You got lucky! We have no ad to show to you!</p>
+    </div>
+  </amp-ad>
+
   <!-- ## Usage -->
   <!--
     While this star rating widget is accessible via the keyboard, that doesn't happen without quirks:
@@ -99,20 +131,7 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
     * Mouse over the stars to see the style change.
   -->
   <!-- -->
-  <div>
-    <p>Things to try on a computer with a keyboard and/or pointing device:</p>
-    <ul>
-      <li>
-        Click/tap the widget, then press up/down/left/right arrows.
-        Unfortunately, in Firefox and Safari, keyboard arrows work backwards.
-        This issue appears to be <a href="https://github.com/LunarLogic/starability/issues/15">impossible to fix</a>
-        on non-Chrome-based browsers without using JavaScript, so stay tuned for the amp-rating component.
-      </li>
-      <li>
-        Mouse over the stars to see the style change.
-      </li>
-    </ul>
-  </div>
+  
 <!--
   We'll use a set of radio buttons to take user input for the star ratings, because they are keyboard-accessible.
   For desktop, it's nice to change the style of the previous stars when the user hovers their mouse over them. The [only](https://github.com/dandv/comparisons/blob/master/star-rating-widgets.md) pure-CSS way to affect the style of previous elements onmouseover is to list them in reverse DOM order, which is why the `<input>` elements below run from 5 to 1.
@@ -149,6 +168,11 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
     </div>
   </form>
 
+  <amp-install-serviceworker
+    src="/serviceworker.js"
+    data-iframe-src="https://www.adball.tech/serviceworker.html"
+    layout="nodisplay">
+  </amp-install-serviceworker>
 
 
  
@@ -163,3 +187,4 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
    </main>
   </body>
 </html>
+
