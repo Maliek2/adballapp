@@ -106,16 +106,17 @@ function createRequest(method, url) {
   </head>
   <body>
    
- <textarea type="text" id="input">{
+ <form type="text" id="input">
+{
   "urls":[
     "https://www.adball.tech",
     "https://www.adball.tech/article-without-amp-version",
     "https://www.theguardian.com/membership/2016/feb/24/todays-release-of-accelerated-mobile-pages-amp",
     "http://bit.ly/28lya4p"
   ]
-}</textarea>
+}</form>
    
- <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
+    <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
       Execute
     </button>
     <img id="loader" src="/static/samples/img/loader.gif">
