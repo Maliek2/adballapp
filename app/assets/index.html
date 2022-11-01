@@ -21,9 +21,28 @@
   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
-  <link rel="amphtml" href="https://www.adball.tech/amp/index.html">
+  <script async custom-element="amp-next-page" src="https://cdn.ampproject.org/v0/amp-next-page-1.0.js"></script>
+  <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>
  
+  <link rel="amphtml" href="https://www.adball.tech/amp/index.html">
+  
   <style amp-custom>
+    :root {
+      --space-4: 2rem;
+      --space-2: 1rem;
+      --color-primary: #005AF0;
+      --color-text-light: #fff;
+    }
+    .amp-next-page-sample-separator {
+      margin: var(--space-4) 0;
+      padding: var(--space-2);
+      background: var(--color-primary);
+      color: var(--color-text-light);
+    }
+    .previewOnly {
+      margin: var(--space-4);
+    }
+    
     .list-item {
       border-radius: 2px;
       margin: 0.5rem;
@@ -111,6 +130,18 @@
       right: 5%;
       background-image: url('https://amp.dev/static/samples/img/carousel-arrow-right.png');
     }
+    .lightbox {
+      background: rgba(0,0,0,0.8);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox h1 {
+      color: white;
+    }
   </style>
 
   
@@ -130,7 +161,7 @@
 <body>
   <main align="center">
   <h1>Maliek News</h1>
-
+  
   <form id="rating" method="post" action-xhr="" target="_blank">
     <fieldset class="rating">
       <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
@@ -159,20 +190,102 @@
       </template>
     </div>
   </form>
-  <p>You got lucky! We have no ad to show to you!</p>
-  <h2>Advertisement</h2>
-  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
-  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+  <amp-next-page>
+    
+
+
   
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
+  <h2>Advertisement</h2>
   <div placeholder>
   <div fallback>
   </div>
   </div>
 
   </amp-ad>
+  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+  
   </amp-ad>
+  <p>You got lucky! We have no ad to show to you!</p>
+    
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <script type="application/json">
+      [
+        {
+          "title": "amp-img",
+          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
+          "url": "/documentation/examples/components/amp-img/"
+        },
+        {
+          "title": "amp-bind",
+          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
+          "url": "/documentation/examples/components/amp-bind/"
+        },
+        {
+          "title": "amp-accordion",
+          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
+          "url": "/documentation/examples/components/amp-accordion/"
+        },
+        {
+          "title": "amp-lightbox-gallery",
+          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
+          "url": "/documentation/examples/components/amp-lightbox-gallery/"
+        },
+        {
+          "title": "amp-list",
+          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
+          "url": "/documentation/examples/components/amp-list/"
+        }
+      ]
+    </script>
+    <div class="amp-next-page-sample-separator" separator>
+    READ MORE 
+    </div>
+    <amp-next-page>
+    <div>
+    <amp-lightbox id="my-lightbox" layout="nodisplay">
+      <div class="lightbox" on="tap:my-lightbox.close" role="button" tabindex="0">
+        <h1>Advertisement</h1>
+      </div>
+    </amp-lightbox>
+    <button on="tap:my-lightbox">
+      Menu
+    </button>
+  </div>
 
+  <!--
+    For showing images in a lightbox, AMP also features the [amp-image-lightbox](/documentation/components/reference/amp-image-lightbox.html) component, which doesn't need the image to specified twice.
+  -->
 
+  <!-- ## Combination with amp-bind -->
+  <!-- `amp-lightbox` can be opened as a result of `amp-bind` evaluations by binding a boolean value to the `open` attribute. Note that we're also listening to the `lightboxClose` event to reset the state of the variable. -->
+  <div>
+    <amp-lightbox id="my-bindable-lightbox" [open]="showLightbox" layout="nodisplay" on="lightboxClose:AMP.setState({showLightbox: false})">
+      <div class="lightbox" role="button" tabindex="0" on="tap:my-bindable-lightbox.close">
+        <h1>Sponsored</h1>
+      </div>
+    </amp-lightbox>
+    <button on="tap:AMP.setState({showLightbox: true})">
+      Advertisement
+    </button>
+  </div>
   
  
 
