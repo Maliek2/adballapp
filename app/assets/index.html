@@ -22,8 +22,8 @@
   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 
-  <link rel="stylesheet" href="https://www.adball.tech/css/ampstart.css">
-  <link rel="canonical" href="https://www.adball.tech/amp/index.html">
+ 
+  <link rel="amphtml" href="https://www.adball.tech/amp/index.html">
  
   <style amp-custom>
     .list-item {
@@ -131,14 +131,6 @@
 <body>
   <main align="center">
   <h1>Maliek News</h1>
-
-  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-  <div placeholder>
-  <h3>Advertisement</h3>
-  <p>You got lucky! We have no ad to show to you!</p>
-
-  </div>
-  </amp-ad>
   <form id="rating" method="post" action-xhr="" target="_blank">
     <fieldset class="rating">
       <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
@@ -167,35 +159,28 @@
       </template>
     </div>
   </form>
+  <p>You got lucky! We have no ad to show to you!</p>
+  <h2>Advertisement</h2>
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
+  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+  
+  <div placeholder>
+  <div fallback>
+  </div>
+  </div>
+
+  </amp-ad>
+  </amp-ad>
+
 
   
-
-  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
-  <div fallback>
-    </div>
-  </amp-ad>
+ 
 
   <!-- ## Supported Contents  -->
   <!-- Each of these nodes may also have arbitrary HTML children.  -->
 
 
-  <amp-carousel height="300" layout="fixed-height" type="slides" role="region" aria-label="Carousel with arbitrary HTML content">
-    <div>
-      <div class="blue-box">
-        This is a blue box for free.
-      </div>
-    </div>
-    <div>
-      <div class="red-box">
-        This is a red box for blood.
-      </div>
-    </div>
-    <div>
-      <div class="green-box">
-        This is a green box for weed.
-      </div>
-    </div>
-  </amp-carousel>
+  
 
     
 
@@ -272,16 +257,11 @@
         data-ad-client="ca-pub-6607653375286321">
    </amp-auto-ads> 
   
-  <amp-install-serviceworker
-    src="/serviceworker.js"
-    data-iframe-src="https://www.adball.tech/serviceworker.html"
-    layout="nodisplay">
-  </amp-install-serviceworker>
-
+  
     <p>You got lucky! We have no ad to show to you!</p>
-    <input id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
+    <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
      Log in
-   </input>
+   </button>
 
    </main>
   </body>
