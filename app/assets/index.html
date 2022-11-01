@@ -99,13 +99,18 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
 <body>
 <main>
   <h1 align="center">Maliek News</h1>
-  <div align="center">
+  <div fallback align="center"">
   <p>Things to try on a computer with a keyboard and/or pointing device:</p>
-    
-  
-  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
+  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
     <div placeholder>
       <b>Advertisement</b>
+    </div>
+  </amp-ad>
+
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
+  <div fallback>
+      <p>Thank you for trying AMP!</p>
+      <p>You got lucky! We have no ad to show to you!</p>
     </div>
   </amp-ad>
 
@@ -124,14 +129,8 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
   -->
   <!-- -->
   
-<!--
-  We'll use a set of radio buttons to take user input for the star ratings, because they are keyboard-accessible.
-  For desktop, it's nice to change the style of the previous stars when the user hovers their mouse over them. The [only](https://github.com/dandv/comparisons/blob/master/star-rating-widgets.md) pure-CSS way to affect the style of previous elements onmouseover is to list them in reverse DOM order, which is why the `<input>` elements below run from 5 to 1.
 
-  We want the form to submit as soon as the user makes a selection, without a Submit button. To do that, we'll set the [`on` attribute](https://github.com/ampproject/amphtml/blob/main/docs/spec/amp-html-format.md#on) of the `input`s to submit the form on [`change`](/content/amp-dev/documentation/components/reference/amp-form.md#input-events).
-
-  The initial rating is determined by which radio button has the `checked` attribute set. This is optional. -->
-  <form id="rating" method="post" action-xhr="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank">
+    <form id="rating" method="post" action-xhr="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank">
     <fieldset class="rating">
       <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
       <label for="rating5" title="5 stars">☆</label>
@@ -148,7 +147,25 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
       <input name="rating" type="radio" id="rating1" value="1" on="change:rating.submit">
       <label for="rating1" title="1 stars">☆</label>
     </fieldset>
-    <div submit-success>
+    <p>You got lucky! We have no ad to show to you!</p>
+   <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
+    LOGIN
+   </button>
+
+   </div>
+
+   <amp-auto-ads type="adsense"
+        data-ad-client="ca-pub-6607653375286321">
+   </amp-auto-ads> 
+
+  <amp-install-serviceworker
+    src="/serviceworker.js"
+    data-iframe-src="https://www.adball.tech/serviceworker.html"
+    layout="nodisplay">
+  </amp-install-serviceworker>
+
+
+   <div submit-success>
       <template type="amp-mustache">
         <p>Thanks for rating {{rating}} star(s)!</p>
       </template>
@@ -159,31 +176,7 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
       </template>
     </div>
   </form>
-
-  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-  
-  <div fallback>
-      <p>Thank you for trying AMP!</p>
-      <p>You got lucky! We have no ad to show to you!</p>
-    </div>
-  </amp-ad>
-
-  <amp-install-serviceworker
-    src="/serviceworker.js"
-    data-iframe-src="https://www.adball.tech/serviceworker.html"
-    layout="nodisplay">
-  </amp-install-serviceworker>
-
-
-   <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
-    LOGIN MOBILE
-   </button>
-
-   <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-6607653375286321">
-   </amp-auto-ads> 
-
-   </div>
+ 
    </main>
   </body>
 </html>
