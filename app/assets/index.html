@@ -18,10 +18,15 @@
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
   <script async custom-element="amp-next-page" src="https://cdn.ampproject.org/v0/amp-next-page-1.0.js"></script>
   <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>
+  <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
  
   <link rel="amphtml" href="https://www.adball.tech/amp/index.html">
   
   <style amp-custom>
+    .amp-sticky-ad-close-button {
+      min-width: 0;
+    }
+   
     :root {
       --space-4: 2rem;
       --space-2: 1rem;
@@ -53,7 +58,7 @@
       padding: 0;  /* to prevent flicker when mousing over padding */
       border: none;  /* to prevent flicker when mousing over border */
       unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
-      text-align: center;  /* revert the RTL direction */
+      text-align: left;  /* revert the RTL direction */
       user-select: none;  /* disable mouse/touch selection */
       font-size: 2em;  /* fallback - IE doesn't support CSS variables */
       font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
@@ -135,8 +140,14 @@
       justify-content: center;
     }
     .lightbox h1 {
-      color: white;
+      color: black;
     }
+.p {
+    color : white;
+   }
+.background {
+    color : black;
+   }
   </style>
 
   
@@ -160,10 +171,9 @@
     <amp-lightbox id="my-lightbox" layout="nodisplay">
       <div class="lightbox" on="tap:my-lightbox.close" role="button" tabindex="0">
         <h1>Advertisement</h1>
-        
      </div>
     </amp-lightbox>
-    <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+    
     <button on="tap:my-lightbox">
       Advertisement
     </button>
@@ -197,7 +207,47 @@
       </template>
     </div>
   </form>
-  
+  <form class="stepper sliding" method="post" action-xhr="/documentation/examples/api/submit-form-input-text-xhr" novalidate on="submit: AMP.setState({ slidingStepperPage: 2 });
+            submit-success: AMP.setState({ slidingStepperPage: 3 });
+            submit-error: AMP.setState({ slidingStepperPage: 4 });
+        ">
+    <section class="page active" [class]="slidingStepperPage > 0 ? 'page previous' : 'page active'">
+      <h3>Sign in</h3>
+      <div class="input">
+        <input type="email" value name="email" autocomplete="email" id="id1" placeholder="Enter your Email" on="input-debounced: AMP.setState({ email: event.value })">
+        <label for="ip1" aria-hidden="true">
+          Enter your Email
+        </label>
+      </div>
+      <button type="button" on="tap:AMP.pushState({ slidingStepperPage: slidingStepperPage + 1 })" disabled [disabled]="!email">next</button>
+    </section>
+    <section class="page next" [class]="slidingStepperPage < 1 ? 'page next' :
+             (slidingStepperPage > 1 ? 'page previous' : 'page active')">
+      <h3>Welcome</h3>
+      <button class="back" [text]="email" on="tap:AMP.pushState({ slidingStepperPage: slidingStepperPage - 1 })" disabled [disabled]="slidingStepperPage != 1" type="button"></button>
+      <div class="input">
+        <input type="password" value name="password" id="id2" placeholder="Enter your Password" disabled [disabled]="slidingStepperPage != 1" on="input-debounced: AMP.setState({ password: event.value })">
+        <label for="ip2" aria-hidden="true">
+          Enter your Password
+        </label>
+      </div>
+      <button disabled [disabled]="slidingStepperPage != 1 || !password" type="submit">submit</button>
+    </section>
+    <section class="page next" [class]="slidingStepperPage < 2 ? 'page next' :
+             (slidingStepperPage > 2 ? 'page previous' : 'page active')">
+        <p>Submitting ...</p>
+    </section>
+    <section class="page next" [class]="slidingStepperPage < 3 ? 'page next' :
+             (slidingStepperPage > 3 ? 'page previous' : 'page active')">
+        <h3>Success</h3>
+        <p>You did it!</p>
+    </section>
+    <section class="page next" [class]="slidingStepperPage < 4 ? 'page next' :
+             (slidingStepperPage > 4 ? 'page previous' : 'page active')">
+      <h3>Something went wrong. </h3>
+      <button on="tap:AMP.setState({ slidingStepperPage: 0 })" type="button">Try again</button>
+    </section>
+  </form>
  
   <p class="previewOnly">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
@@ -236,6 +286,27 @@
     </button>
   </div>
   
+  <amp-sticky-ad layout="nodisplay">
+     <amp-ad width="320" height="50" type="doubleclick" data-slot="/35096353/amptesting/formats/sticky">
+   </amp-ad>
+  </amp-sticky-ad>
+
+  
+  <!--
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  -->
+  <!--
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  -->
+  <!--
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  -->
+  <!--
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  -->
+  <!--
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  -->
  
 
   
