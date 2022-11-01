@@ -97,9 +97,10 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
 </head>
 
 <body>
-<main>
-  <h1 align="center">Maliek News</h1>
-  <div fallback align="center"">
+  <main align="center">
+
+  <h1>Maliek News</h1>
+  <div fallback>
   <p>Things to try on a computer with a keyboard and/or pointing device:</p>
   <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
     <div placeholder>
@@ -147,24 +148,13 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
       <input name="rating" type="radio" id="rating1" value="1" on="change:rating.submit">
       <label for="rating1" title="1 stars">☆</label>
     </fieldset>
-    <p>You got lucky! We have no ad to show to you!</p>
-   <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
-    LOGIN
-   </button>
+    
 
    </div>
 
-   <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-6607653375286321">
-   </amp-auto-ads> 
+   
 
-  <amp-install-serviceworker
-    src="/serviceworker.js"
-    data-iframe-src="https://www.adball.tech/serviceworker.html"
-    layout="nodisplay">
-  </amp-install-serviceworker>
-
-
+   
    <div submit-success>
       <template type="amp-mustache">
         <p>Thanks for rating {{rating}} star(s)!</p>
@@ -176,7 +166,20 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
       </template>
     </div>
   </form>
- 
+    <amp-auto-ads type="adsense"
+        data-ad-client="ca-pub-6607653375286321">
+   </amp-auto-ads> 
+  
+  <amp-install-serviceworker
+    src="/serviceworker.js"
+    data-iframe-src="https://www.adball.tech/serviceworker.html"
+    layout="nodisplay">
+  </amp-install-serviceworker>
+
+  <p>You got lucky! We have no ad to show to you!</p>
+    <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
+    Log in
+    </button>
    </main>
   </body>
 </html>
