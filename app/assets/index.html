@@ -54,13 +54,13 @@
     }
   
   .rating {
-      --star-size: 3;  /* use CSS variables to calculate dependent dimensions later */
+      --star-size: 2;  /* use CSS variables to calculate dependent dimensions later */
       padding: 0;  /* to prevent flicker when mousing over padding */
       border: none;  /* to prevent flicker when mousing over border */
       unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
       text-align: center;  /* revert the RTL direction */
       user-select: none;  /* disable mouse/touch selection */
-      font-size: 3em;  /* fallback - IE doesn't support CSS variables */
+      font-size: 2em;  /* fallback - IE doesn't support CSS variables */
       font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
       cursor: pointer;
       /* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
@@ -161,7 +161,23 @@
 <body>
   <main align="center">
   <h1>Maliek News</h1>
-  
+  <div>
+    <amp-lightbox id="my-lightbox" layout="nodisplay">
+      <div class="lightbox" on="tap:my-lightbox.close" role="button" tabindex="0">
+        <h1>Advertisement</h1>
+        <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
+        <div placeholder>
+        <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+     </div>
+     </amp-ad>
+     </amp-ad>
+     </div>
+    </amp-lightbox>
+    <button on="tap:my-lightbox">
+      Feedback
+    </button>
+  </div>
+
   <form id="rating" method="post" action-xhr="" target="_blank">
     <fieldset class="rating">
       <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
@@ -190,20 +206,15 @@
       </template>
     </div>
   </form>
-  <amp-next-page>
-    
-
-
   
-  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
   <h2>Advertisement</h2>
+
   <div placeholder>
   <div fallback>
   </div>
   </div>
 
-  </amp-ad>
-  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
+  
   
   </amp-ad>
   <p>You got lucky! We have no ad to show to you!</p>
@@ -226,50 +237,8 @@
   <p class="previewOnly">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
   </p>
-  <script type="application/json">
-      [
-        {
-          "title": "amp-img",
-          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
-          "url": "/documentation/examples/components/amp-img/"
-        },
-        {
-          "title": "amp-bind",
-          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
-          "url": "/documentation/examples/components/amp-bind/"
-        },
-        {
-          "title": "amp-accordion",
-          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
-          "url": "/documentation/examples/components/amp-accordion/"
-        },
-        {
-          "title": "amp-lightbox-gallery",
-          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
-          "url": "/documentation/examples/components/amp-lightbox-gallery/"
-        },
-        {
-          "title": "amp-list",
-          "image": "https://preview.amp.dev/static/samples/img/amp.jpg",
-          "url": "/documentation/examples/components/amp-list/"
-        }
-      ]
-    </script>
-    <div class="amp-next-page-sample-separator" separator>
-    READ MORE 
-    </div>
-    <amp-next-page>
-    <div>
-    <amp-lightbox id="my-lightbox" layout="nodisplay">
-      <div class="lightbox" on="tap:my-lightbox.close" role="button" tabindex="0">
-        <h1>Advertisement</h1>
-      </div>
-    </amp-lightbox>
-    <button on="tap:my-lightbox">
-      Menu
-    </button>
-  </div>
-
+  
+    
   <!--
     For showing images in a lightbox, AMP also features the [amp-image-lightbox](/documentation/components/reference/amp-image-lightbox.html) component, which doesn't need the image to specified twice.
   -->
