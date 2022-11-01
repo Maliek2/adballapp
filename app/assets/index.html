@@ -1,10 +1,12 @@
 <!doctype html>
 <html ⚡ lang="en">
 <head>
-<meta charset="utf-8">
-  
+  <meta charset="utf-8">
   <title>Native Star Rating</title>
   <meta name="viewport" content="width=device-width">
+  
+  <!-- ## Setup -->
+  <!-- Additionally used AMP components must be imported in the header. We use `amp-list` for showing a list of products -->
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
   <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
@@ -15,10 +17,105 @@
   <script async custom-element="amp-render" src="https://cdn.ampproject.org/v0/amp-render-1.0.js"></script>
   <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+
+  
+  <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+  <!-- We use `amp-bind` for dynamically changing the src of `amp-list` -->
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+
   <link rel="stylesheet" href="https://www.adball.tech/css/ampstart.css">
   <link rel="canonical" href="https://www.adball.tech/amp/home.html
+ 
+  <style amp-custom>
+    .list-item {
+      border-radius: 2px;
+      margin: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .list-item amp-img {
+      flex-shrink: 0;
+    }
+  
+  .rating {
+      --star-size: 2;  /* use CSS variables to calculate dependent dimensions later */
+      padding: 0;  /* to prevent flicker when mousing over padding */
+      border: none;  /* to prevent flicker when mousing over border */
+      unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
+      text-align: center;  /* revert the RTL direction */
+      user-select: none;  /* disable mouse/touch selection */
+      font-size: 2em;  /* fallback - IE doesn't support CSS variables */
+      font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
+      cursor: pointer;
+      /* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+      margin-bottom: 1em;
+    }
+    /* the stars */
+    .rating > label {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;  /* magic number to overlap the radio buttons on top of the stars */
+      width: calc(var(--star-size) / 2 * 1.1em);
+    }
+    .rating > *:hover,
+    .rating > *:hover ~ label,
+    .rating:not(:hover) > input:checked ~ label {
+      color: transparent;  /* reveal the contour/white star from the HTML markup */
+      cursor: inherit;  /* avoid a cursor transition from arrow/pointer to text selection */
+    }
+    .rating > *:hover:before,
+    .rating > *:hover ~ label:before,
+    .rating:not(:hover) > input:checked ~ label:before {
+      content: "★";
+      position: absolute;
+      left: 0;
+      color: gold;
+    }
+    .rating > input {
+      position: relative;
+      transform: scale(3);  /* make the radio buttons big; they don't inherit font-size */
+      transform: scale(var(--star-size));
+      /* the magic numbers below correlate with the font-size */
+      top: -0.5em;  /* margin-top doesn't work */
+      top: calc(var(--star-size) / 6 * -1em);
+      margin-left: -2.5em;  /* overlap the radio buttons exactly under the stars */
+      margin-left: calc(var(--star-size) / 6 * -5em);
+      z-index: 2;  /* bring the button above the stars so it captures touches/clicks */
+      opacity: 0;  /* comment to see where the radio buttons are */
+      font-size: initial; /* reset to default */
+    }
+    form.amp-form-submit-error [submit-error] {
+      color: red;
+    }
 
-  <!-- ## Setup -->
+    .blue-box, .red-box, .green-box {
+      width: 100%;
+      height: 280px;
+    }
+    .blue-box {
+      background: blue;
+      color: #fff;
+    }
+    .green-box {
+      background: green;
+      color: #fff;
+    }
+    .red-box {
+      background: red;
+      color: #111;
+    }
+    #custom-button .amp-carousel-button-prev {
+      left: 5%;
+      background-image: url('https://amp.dev/static/samples/img/carousel-arrow-left.png');
+    }
+    #custom-button .amp-carousel-button-next {
+      right: 5%;
+      background-image: url('https://amp.dev/static/samples/img/carousel-arrow-right.png');
+    }
+  </style>
+
   
   <!--
     Import the `amp-form` component.
@@ -99,6 +196,77 @@
       </template>
     </div>
   </form>
+
+<amp-list width="auto" height="332" layout="fixed-height" src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3" binding="refresh" load-more="manual" load-more-bookmark="next">
+    <template type="amp-mustache">
+      <div class="list-item">
+        <amp-img src="{{imageUrl}}" width="100" height="100">
+        </amp-img>
+        <p>{{title}}</p>
+      </div>
+    </template>
+    <div fallback>
+      FALLBACK
+    </div>
+    <div placeholder>
+      PLACEHOLDER
+    </div>
+    <amp-list-load-more load-more-failed>
+      ERROR
+    </amp-list-load-more>
+    <amp-list-load-more load-more-end>
+      END
+    </amp-list-load-more>
+  </amp-list>
+
+  <!-- ## Show more using amp-list and amp-bind -->
+  <!-- You can also implement a show more button manually by using `amp-list` and `amp-bind`, where
+  `amp-list` `src` data are bind to the value of an `amp-state` element. Here we are using two `amp-state`: `photos`
+  which uses the same json `src` as the `amp-list` so that will initially contain the same list of items ... -->
+  <amp-state id="photos" src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3">
+  </amp-state>
+
+<!-- ... while the `amp-state` with id `product` is just used to implement the show-more logic where we are allowing the user to click 3 times. -->
+  <amp-state id="product">
+    <script type="application/json">
+    {
+      "moreItemsPageIndex": 2,
+      "hasMorePages": true
+    }
+    </script>
+  </amp-state>
+  <!-- We bind the `src` attribute of the `amp-list` to the `amp-state` object containing the products
+      from that component as a `src`. We also dynamically change the height of the amp-list based on
+      the number of items (each item has a height of `108px`). -->
+  <amp-list src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3" [src]="photos.items" binding="refresh" layout="fixed-height" width="auto" height="332" [height]="photos.items.length * 108 + 8">
+    <template type="amp-mustache">
+      <div class="list-item">
+        <amp-img src="{{imageUrl}}" width="100" height="100">
+        </amp-img>
+        <p>{{title}}</p>
+      </div>
+    </template>
+  </amp-list>
+
+  <!-- The show more button is implemented via a form which triggers a page update on the `submit-success` event.
+      We are then merging the form results into the items already loaded by the `amp-state` using the `concat` function. -->
+      <form method="GET" action="https://preview.amp.dev/documentation/examples/api/photo-stream" action-xhr="/documentation/examples/api/photo-stream" target="_top" on="submit-success: AMP.setState({
+              photos: {
+                items: photos.items.concat(event.response.items)
+              },
+              product: {
+                moreItemsPageIndex: product.moreItemsPageIndex - 1,
+                hasMorePages: !!event.response.next
+              }
+            });">
+        <input type="hidden" name="items" value="3">
+        <input type="hidden" name="left" value="2" [value]="product.moreItemsPageIndex">
+        <input type="submit" value="Show More" [hidden]="!product.hasMorePages">
+    </form>
+
+
+
+
  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
   
   <div fallback>
@@ -117,13 +285,10 @@
     layout="nodisplay">
   </amp-install-serviceworker>
 
-  <p>Things to try on a computer with a keyboard and/or pointing device:</p>
-
-  <p>You got lucky! We have no ad to show to you!</p>
-    
-    <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
+    <p>You got lucky! We have no ad to show to you!</p>
+    <input id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
      Log in
-    </button>
+   </input>
 
    </main>
   </body>
