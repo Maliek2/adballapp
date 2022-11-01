@@ -4,23 +4,22 @@
   <meta charset="utf-8">
   <title>Native Star Rating</title>
   <meta name="viewport" content="width=device-width">
-  
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
   <!-- ## Setup -->
   <!-- Additionally used AMP components must be imported in the header. We use `amp-list` for showing a list of products -->
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <!-- We also need the `amp-mustache` component. -->
+  <!-- We use `amp-bind` for dynamically changing the src of `amp-list` -->
+ 
+  
   <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
   <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-  <!-- We also need the `amp-mustache` component. -->
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
   <script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
   <script async custom-element="amp-render" src="https://cdn.ampproject.org/v0/amp-render-1.0.js"></script>
   <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
-
-  
   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-  <!-- We use `amp-bind` for dynamically changing the src of `amp-list` -->
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 
   <link rel="stylesheet" href="https://www.adball.tech/css/ampstart.css">
@@ -38,13 +37,13 @@
     }
   
   .rating {
-      --star-size: 2;  /* use CSS variables to calculate dependent dimensions later */
+      --star-size: 3;  /* use CSS variables to calculate dependent dimensions later */
       padding: 0;  /* to prevent flicker when mousing over padding */
       border: none;  /* to prevent flicker when mousing over border */
       unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
       text-align: center;  /* revert the RTL direction */
       user-select: none;  /* disable mouse/touch selection */
-      font-size: 2em;  /* fallback - IE doesn't support CSS variables */
+      font-size: 3em;  /* fallback - IE doesn't support CSS variables */
       font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
       cursor: pointer;
       /* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
@@ -57,7 +56,7 @@
       display: inline-block;
       position: relative;
       width: 1.1em;  /* magic number to overlap the radio buttons on top of the stars */
-      width: calc(var(--star-size) / 2 * 1.1em);
+      width: calc(var(--star-size) / 3 * 1.1em);
     }
     .rating > *:hover,
     .rating > *:hover ~ label,
@@ -133,42 +132,14 @@
   <main align="center">
   <h1>Maliek News</h1>
 
-  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
+  <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
   <div placeholder>
-    <b>Advertisement</b>
-  </div>
-  </amp-ad>
-
-  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-  
-  <div fallback>
+  <h3>Advertisement</h3>
   <p>You got lucky! We have no ad to show to you!</p>
+
   </div>
   </amp-ad>
-
-  <!-- ## Supported Contents  -->
-  <!-- Each of these nodes may also have arbitrary HTML children.  -->
-
-
-  <amp-carousel height="300" layout="fixed-height" type="slides" role="region" aria-label="Carousel with arbitrary HTML content">
-    <div>
-      <div class="blue-box">
-        This is a blue box.
-      </div>
-    </div>
-    <div>
-      <div class="red-box">
-        This is a red box.
-      </div>
-    </div>
-    <div>
-      <div class="green-box">
-        This is a green box.
-      </div>
-    </div>
-  </amp-carousel>
-
-    <form id="rating" method="post" action-xhr="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank">
+  <form id="rating" method="post" action-xhr="" target="_blank">
     <fieldset class="rating">
       <input name="rating" type="radio" id="rating5" value="5" on="change:rating.submit">
       <label for="rating5" title="5 stars">☆</label>
@@ -196,6 +167,37 @@
       </template>
     </div>
   </form>
+
+  
+
+  <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
+  <div fallback>
+    </div>
+  </amp-ad>
+
+  <!-- ## Supported Contents  -->
+  <!-- Each of these nodes may also have arbitrary HTML children.  -->
+
+
+  <amp-carousel height="300" layout="fixed-height" type="slides" role="region" aria-label="Carousel with arbitrary HTML content">
+    <div>
+      <div class="blue-box">
+        This is a blue box for free.
+      </div>
+    </div>
+    <div>
+      <div class="red-box">
+        This is a red box for blood.
+      </div>
+    </div>
+    <div>
+      <div class="green-box">
+        This is a green box for weed.
+      </div>
+    </div>
+  </amp-carousel>
+
+    
 
 <amp-list width="auto" height="332" layout="fixed-height" src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3" binding="refresh" load-more="manual" load-more-bookmark="next">
     <template type="amp-mustache">
@@ -250,7 +252,7 @@
 
   <!-- The show more button is implemented via a form which triggers a page update on the `submit-success` event.
       We are then merging the form results into the items already loaded by the `amp-state` using the `concat` function. -->
-      <form method="GET" action="https://preview.amp.dev/documentation/examples/api/photo-stream" action-xhr="/documentation/examples/api/photo-stream" target="_top" on="submit-success: AMP.setState({
+      <form method="GET" action="https://www.adball.tech/documentation/api/photo-stream" action-xhr="/documentation/examples/api/photo-stream" target="_top" on="submit-success: AMP.setState({
               photos: {
                 items: photos.items.concat(event.response.items)
               },
@@ -265,15 +267,6 @@
     </form>
 
 
-
-
- <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-  
-  <div fallback>
-  <p>Thank you for trying AMP!</p> 
- </amp-ad>
-   
-   
 
    <amp-auto-ads type="adsense"
         data-ad-client="ca-pub-6607653375286321">
