@@ -165,16 +165,12 @@
     <amp-lightbox id="my-lightbox" layout="nodisplay">
       <div class="lightbox" on="tap:my-lightbox.close" role="button" tabindex="0">
         <h1>Advertisement</h1>
-        <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist"> 
-        <div placeholder>
-        <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-     </div>
-     </amp-ad>
-     </amp-ad>
+        <amp-ad width="400" height="300" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705"></amp-ad>
      </div>
     </amp-lightbox>
+
     <button on="tap:my-lightbox">
-      Feedback
+      Advertisement
     </button>
   </div>
 
@@ -207,18 +203,7 @@
     </div>
   </form>
   
-  <h2>Advertisement</h2>
-
-  <div placeholder>
-  <div fallback>
-  </div>
-  </div>
-
-  
-  
-  </amp-ad>
-  <p>You got lucky! We have no ad to show to you!</p>
-    
+ 
   <p class="previewOnly">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
   </p>
@@ -258,92 +243,11 @@
   
  
 
-  <!-- ## Supported Contents  -->
-  <!-- Each of these nodes may also have arbitrary HTML children.  -->
-
-
+  
   
 
     
 
-<amp-list width="auto" height="332" layout="fixed-height" src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3" binding="refresh" load-more="manual" load-more-bookmark="next">
-    <template type="amp-mustache">
-      <div class="list-item">
-        <amp-img src="{{imageUrl}}" width="100" height="100">
-        </amp-img>
-        <p>{{title}}</p>
-      </div>
-    </template>
-    <div fallback>
-      FALLBACK
-    </div>
-    <div placeholder>
-      PLACEHOLDER
-    </div>
-    <amp-list-load-more load-more-failed>
-      ERROR
-    </amp-list-load-more>
-    <amp-list-load-more load-more-end>
-      END
-    </amp-list-load-more>
-  </amp-list>
-
-  <!-- ## Show more using amp-list and amp-bind -->
-  <!-- You can also implement a show more button manually by using `amp-list` and `amp-bind`, where
-  `amp-list` `src` data are bind to the value of an `amp-state` element. Here we are using two `amp-state`: `photos`
-  which uses the same json `src` as the `amp-list` so that will initially contain the same list of items ... -->
-  <amp-state id="photos" src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3">
-  </amp-state>
-
-<!-- ... while the `amp-state` with id `product` is just used to implement the show-more logic where we are allowing the user to click 3 times. -->
-  <amp-state id="product">
-    <script type="application/json">
-    {
-      "moreItemsPageIndex": 2,
-      "hasMorePages": true
-    }
-    </script>
-  </amp-state>
-  <!-- We bind the `src` attribute of the `amp-list` to the `amp-state` object containing the products
-      from that component as a `src`. We also dynamically change the height of the amp-list based on
-      the number of items (each item has a height of `108px`). -->
-  <amp-list src="https://preview.amp.dev/documentation/examples/api/photo-stream?items=3&left=3" [src]="photos.items" binding="refresh" layout="fixed-height" width="auto" height="332" [height]="photos.items.length * 108 + 8">
-    <template type="amp-mustache">
-      <div class="list-item">
-        <amp-img src="{{imageUrl}}" width="100" height="100">
-        </amp-img>
-        <p>{{title}}</p>
-      </div>
-    </template>
-  </amp-list>
-
-  <!-- The show more button is implemented via a form which triggers a page update on the `submit-success` event.
-      We are then merging the form results into the items already loaded by the `amp-state` using the `concat` function. -->
-      <form method="GET" action="https://www.adball.tech/documentation/api/photo-stream" action-xhr="/documentation/examples/api/photo-stream" target="_top" on="submit-success: AMP.setState({
-              photos: {
-                items: photos.items.concat(event.response.items)
-              },
-              product: {
-                moreItemsPageIndex: product.moreItemsPageIndex - 1,
-                hasMorePages: !!event.response.next
-              }
-            });">
-        <input type="hidden" name="items" value="3">
-        <input type="hidden" name="left" value="2" [value]="product.moreItemsPageIndex">
-        <input type="submit" value="Show More" [hidden]="!product.hasMorePages">
-    </form>
-
-
-
-   <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-6607653375286321">
-   </amp-auto-ads> 
-  
-  
-    <p>You got lucky! We have no ad to show to you!</p>
-    <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
-     Log in
-   </button>
 
    </main>
   </body>
