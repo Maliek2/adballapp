@@ -20,16 +20,16 @@
 
 
 
-
-   <style amp-custom>
+   <style amp-boilerplate>
+  
     .rating {
-      --star-size: 3;  /* use CSS variables to calculate dependent dimensions later */
+      --star-size: 2;  /* use CSS variables to calculate dependent dimensions later */
       padding: 0;  /* to prevent flicker when mousing over padding */
       border: none;  /* to prevent flicker when mousing over border */
       unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
-      text-align: left;  /* revert the RTL direction */
+      text-align: center;  /* revert the RTL direction */
       user-select: none;  /* disable mouse/touch selection */
-      font-size: 3em;  /* fallback - IE doesn't support CSS variables */
+      font-size: 2em;  /* fallback - IE doesn't support CSS variables */
       font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
       cursor: pointer;
       /* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
@@ -42,7 +42,7 @@
       display: inline-block;
       position: relative;
       width: 1.1em;  /* magic number to overlap the radio buttons on top of the stars */
-      width: calc(var(--star-size) / 3 * 1.1em);
+      width: calc(var(--star-size) / 2 * 1.1em);
     }
     .rating > *:hover,
     .rating > *:hover ~ label,
@@ -74,14 +74,10 @@
     form.amp-form-submit-error [submit-error] {
       color: red;
     }
-  </style>
-  <style amp-boilerplate>
-body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-</style><noscript>
-<style amp-boilerplate>
-
+  
 body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
-</style></noscript>
+</style>
+
   <!-- ## Setup -->
   
   <!--
@@ -100,36 +96,23 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
   <main align="center">
 
   <h1>Maliek News</h1>
-  <div fallback>
-  <p>Things to try on a computer with a keyboard and/or pointing device:</p>
-  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
-    <div placeholder>
-      <b>Advertisement</b>
-    </div>
-  </amp-ad>
 
   <amp-ad width="300" height="200" type="doubleclick" data-slot="/4119129/doesnt-exist">
   <div fallback>
-      <p>Thank you for trying AMP!</p>
-      <p>You got lucky! We have no ad to show to you!</p>
-    </div>
+  <p>Thank you for trying AMP!</p>
+  <div placeholder>
+    <b>Advertisement</b>
+  </div>
   </amp-ad>
 
-  <!-- ## Fallback -->
-  <!--
-    `amp-ad` supports a child element with the `fallback` attribute. If supported by the ad network, this element is shown if no ad is available for this slot.
-  -->
+  <amp-ad width="300" height="250" type="a9" data-amzn_assoc_ad_mode="auto" data-divid="amzn-assoc-ad-ad-2664e9be-a8b4-417f-96ba-909b1f1fe705" data-recomtype="async" data-adinstanceid="2664e9be-a8b4-417f-96ba-909b1f1fe705">
   
+  <div fallback>
+  <p>You got lucky! We have no ad to show to you!</p>
+  </div>
+  </amp-ad>
 
-  <!-- ## Usage -->
-  <!--
-    While this star rating widget is accessible via the keyboard, that doesn't happen without quirks:
 
-    * Click/tap the widget, then press up/down/left/right arrows. Unfortunately, in Firefox and Safari, keyboard arrows work backwards. This issue appears to be <a href="https://github.com/LunarLogic/starability/issues/15">impossible to fix</a> on non-Chrome-based browsers without using JavaScript, so stay tuned for the amp-rating component.
-    * Mouse over the stars to see the style change.
-  -->
-  <!-- -->
-  
 
     <form id="rating" method="post" action-xhr="https://amp.dev/documentation/examples/interactivity-dynamic-content/star_rating/set" target="_blank">
     <fieldset class="rating">
@@ -148,14 +131,7 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
       <input name="rating" type="radio" id="rating1" value="1" on="change:rating.submit">
       <label for="rating1" title="1 stars">☆</label>
     </fieldset>
-    
-
-   </div>
-
-   
-
-   
-   <div submit-success>
+    <div submit-success>
       <template type="amp-mustache">
         <p>Thanks for rating {{rating}} star(s)!</p>
       </template>
@@ -166,7 +142,13 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
       </template>
     </div>
   </form>
-    <amp-auto-ads type="adsense"
+
+   
+
+   
+   
+
+   <amp-auto-ads type="adsense"
         data-ad-client="ca-pub-6607653375286321">
    </amp-auto-ads> 
   
@@ -176,10 +158,14 @@ body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:non
     layout="nodisplay">
   </amp-install-serviceworker>
 
+  <p>Things to try on a computer with a keyboard and/or pointing device:</p>
+
   <p>You got lucky! We have no ad to show to you!</p>
+    
     <button id="run" class="ampstart-btn" onclick="sendAmpUrlRequest();">
-    Log in
+     Log in
     </button>
+
    </main>
   </body>
 </html>
