@@ -1,0 +1,24 @@
+.blue-box, .red-box, .green-box {
+      width: 100%;
+      height: 280px;
+    }
+    .blue-box {
+      background: blue;
+      color: #fff;
+    }
+    .green-box {
+      background: green;
+      color: #fff;
+    }
+    .red-box {
+      background: red;
+      color: #111;
+    }
+    #custom-button .amp-carousel-button-prev {
+      left: 5%;
+      background-image: url('https://amp.dev/static/samples/img/carousel-arrow-left.png');
+    }
+    #custom-button .amp-carousel-button-next {
+      right: 5%;
+      background-image: url('https://amp.dev/static/samples/img/carousel-arrow-right.png');
+    }
